@@ -1,0 +1,49 @@
+import requests
+
+
+class Github:
+    def __init__(self):
+        self.api_url = "https://api.github.com"
+
+    def get_user(self, username):
+        response = requests.get(self.api_url + "/users/" + username)
+        return response.json()
+
+    def get_repositories(self, username):
+        response = requests.get(self.api_url + "/users/" + username + "/repos")
+        return response.json()
+
+    def create_repository(self, name, token):
+        response = requests.post(self.api_url + "/user/repos?access_token=" + token, json={"name": name,
+                                                                                           "description": "This is your first repository",
+                                                                                           "homepage": "https://github.com",
+                                                                                           "private": False,
+                                                                                           "has_issues": True,
+                                                                                           "has_projects": True,
+                                                                                           "has_wiki": True})
+        return response.json()
+
+
+github = Github()
+
+while True:
+    choose = input("1)Find user \n 2)Get repositories \n 3)Create repo \n 4)Exit\n")
+    if choose == "4":
+        break
+    else:
+        if choose == "1":
+            username = input("username:")
+            result = github.get_user(username)
+            print(f"name:{result['name']}\npublic repos:{result['public_repos']}\nfollowers:{result['followers']}")
+        elif choose == "2":
+            username = input("username:")
+            print(f"{username}".center(50, "*"))
+            result = github.get_repositories(username)
+            for repo in result:
+                print(repo["name"].center(50))
+            print(f"{username}".center(50, "*"))
+        elif choose == "3":
+            token = input("token:")
+            name = input("name:")
+            result = github.create_repository(name, token)
+            print(result)
