@@ -30,7 +30,8 @@ class Car:
 class Bus(Car):  # I use inheritance in here for be easier than
 
     def __init__(self, luggage, brand, model, fuel, price):
-        super().__init__(brand, model, fuel, price)  # Super class should use  for use inheritance
+        # Super class should use  for use inheritance
+        super().__init__(brand, model, fuel, price)
         self.luggage = luggage
         self.Otv = 2.5
 
