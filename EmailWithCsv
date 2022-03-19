@@ -72,12 +72,18 @@ Want to know more about me? [Check out my portfolio.](http://mehmetalicakmak.ren
 """
 mailKonu="I am Mehmet Ali Cakmak"
 
+for i in range(2800,data["Email"].size):
+ 
+    try:
+        who=data["Email"].iloc[i]
+    
+        yag.send(to=who,subject=mailKonu,contents=mailMetni)
+        print(f"{i}.  {who} gönderildi")
+    except:
+        yag.close()
+        time.sleep(7)
+        yag=yagmail.SMTP("blabla@gmail.com","*******")#enter gmail and password again
+        
 
-for i in range(data["Email"].size):
-    who=data["Email"].iloc[i]
-    if who==None:
-        continue
-    yag.send(to=who,subject=mailKonu,contents=mailMetni)
-    print(f"{i}.  {who} gönderildi")
 
 yag.close()
