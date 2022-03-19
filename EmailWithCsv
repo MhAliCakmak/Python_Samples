@@ -1,0 +1,83 @@
+import yagmail
+import csv
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import pandas as pd
+
+
+data = pd.read_csv("blabla.csv", 
+index_col='Name')
+
+
+      
+yag=yagmail.SMTP("blabla@gmail.com","*******")#enter gmail and password
+
+mailMetni="""
+Hey there 👋
+
+I work in the fields of Blockchain technology, dApp, DeFi. I have an innovative personality that does not lose its researcher spirit in the field of Blockchain. I am confident in leadership and project management and I am Blockchain Developer in Rens token office.
+
+Want to know more about me? [Check out my portfolio.](http://mehmetalicakmak.renderforestsites.com)
+
+## 📌 Pinned Repositories
+
+<br>
+
+<a href="https://github.com/mehmet5643/OrderAutomation">
+  <img align="center" style="margin:0.5rem" src="https://github-readme-stats.vercel.app/api/pin/?username=mehmet5643&repo=OrderAutomation&theme=bear&hide_border=true" />
+</a>
+
+
+
+<a href="https://github.com/mehmet5643/Python_problemler.py">
+   <img align="center" style="margin:0.5rem" src="https://github-readme-stats.vercel.app/api/pin/?username=mehmet5643&repo=Python_problemler.py&theme=bear&hide_border=true" />
+
+</a>
+
+<br>
+<a href="https://github.com/mehmet5643/https://github.com/mehmet5643/test-dapp">
+   <img align="center" style="margin:0.5rem" src="https://github-readme-stats.vercel.app/api/pin/?username=mehmet5643&repo=test-dapp&theme=bear&hide_border=true" />
+
+</a>
+
+
+
+<a href="https://github.com/mehmet5643/Blockchain">
+   <img align="center" style="margin:0.5rem" src="https://github-readme-stats.vercel.app/api/pin/?username=mehmet5643&repo=Blockchain&theme=bear&hide_border=true" />
+</a>
+
+
+
+<br>
+<br>
+
+## &#x1f4c8; GitHub Stats
+
+<br>
+
+<a href="https://github.com/mehmet5643">
+  <img align="center" style="margin:0.5rem" src="https://github-readme-stats.vercel.app/api/top-langs/?username=mehmet5643&hide=html,css&theme=bear&hide_border=true" />
+</a>
+<br>
+<a href="https://github.com/mehmet5643">
+  <img align="center" style="margin:0.5rem" src="https://github-readme-stats.vercel.app/api?username=mehmet5643&show_icons=true&line_height=27&count_private=true&theme=bear&hide_border=true" alt="Mehmet Ali's GitHub Stats" />
+</a>
+
+
+<br>
+  <img src = "https://github-readme-streak-stats.herokuapp.com?user=mehmet5643&theme=bear&hide_border=true">
+
+
+"""
+mailKonu="I am Mehmet Ali Cakmak"
+
+
+for i in range(data["Email"].size):
+    who=data["Email"].iloc[i]
+    if who==None:
+        continue
+    yag.send(to=who,subject=mailKonu,contents=mailMetni)
+    print(f"{i}.  {who} gönderildi")
+
+yag.close()
