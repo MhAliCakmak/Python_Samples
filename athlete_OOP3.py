@@ -4,7 +4,8 @@ class Athlete:
         self.surname = surname
         self.branch = branch
         self.bronze = bronze  # Public and anyone who want can see this info # Go to 47 line
-        self._silver = silver  # This is protected info so anyone can see only private can see # Go to 48 line
+        # This is protected info so anyone can see only private can see # Go to 48 line
+        self._silver = silver
         self.__gold = gold  # This is private info for me  . Nobody but you can see # Go to 49 line
 
     def __str__(self):
