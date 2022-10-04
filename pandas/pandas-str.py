@@ -4,8 +4,8 @@ import pandas as pd
 df = pd.read_csv('all_seasons.csv')
 
 
-result=df
-result=df.columns
+result = df
+result = df.columns
 
 result=df['player_name']
 
